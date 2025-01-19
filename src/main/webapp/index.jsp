@@ -1,5 +1,13 @@
+<%@ page import="lk.ijse.ecommerceapp.model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+User user = (User) request.getSession().getAttribute("user");
+if (user != null) {
+    request.setAttribute("user", user);
+    }
+%>
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Welcome To Shopping Cart!</title>

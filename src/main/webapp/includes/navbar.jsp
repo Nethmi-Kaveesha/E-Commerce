@@ -97,6 +97,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Always Visible -->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">
                         <i class="fas fa-home"></i> Home
@@ -117,24 +118,39 @@
                         <i class="fas fa-envelope"></i> Contact Us
                     </a>
                 </li>
-
-                <!-- Login and Register Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="log-out">
-                        <i class="fas fa-sign-in-alt"></i> Logout
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="rejister.jsp">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>
+
+                <!-- Visible to Logged-In Users -->
+                <% if (user != null) { %>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../webapp/cart.jsp">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../webapp/orders.jsp">
+                        <i class="fas fa-box"></i> Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="log-out">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+                <% } else { %>
+                <!-- Visible to Guests -->
+                <li class="nav-item">
+                    <a class="nav-link" href="login.jsp">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <% } %>
             </ul>
         </div>
     </div>
 </nav>
+

@@ -117,10 +117,16 @@
                         <i class="fas fa-envelope"></i> Contact Us
                     </a>
                 </li>
+
                 <!-- Login and Register Links -->
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp">
                         <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="log-out">
+                        <i class="fas fa-sign-in-alt"></i> Logout
                     </a>
                 </li>
                 <li class="nav-item">

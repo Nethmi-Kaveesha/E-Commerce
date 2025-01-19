@@ -124,7 +124,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="rejister.jsp">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>

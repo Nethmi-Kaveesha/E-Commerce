@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-
+<%@include file="includes/navbar.jsp"%>
 <div class="container">
     <h2>Login</h2>
     <form action="LoginServlet" method="post">

@@ -1,81 +1,113 @@
-<style>
-    /* Custom styles for the page */
-    .top-section {
-        background-color: #343a40;
-        color: white;
-        padding: 20px 0;
-    }
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    .navbar-brand img {
-        width: 200px; /* Adjust logo size */
-        height: 70px;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effects */
-        border: 3px solid #ffffff; /* Add border around logo */
-        border-radius: 8px; /* Rounded corners for the logo */
-    }
+        .top-section {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
 
-    .navbar-brand img:hover {
-        transform: scale(1.1); /* Slight zoom effect */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add shadow */
-    }
+        #logo h1 {
+            font-family: "Britannic Bold", sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0;
+            position: relative;
+            right: -20px; /* Move text 20px to the right */
+            text-transform: capitalize;
+        }
 
-    .search-bar {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Space between input and button */
-    }
+        #logo h1 span:first-child {
+            color: #ff8c00; /* Orange color for 'T' */
+        }
 
-    .search-bar input {
-        width: 60%;
-        max-width: 500px; /* Limit the input width on larger screens */
-        padding: 10px;
-        border-radius: 25px;
-        border: 1px solid #ccc;
-    }
+        .navbar-brand img {
+            width: 200px;
+            height: 70px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 3px solid #ffffff;
+            border-radius: 8px;
+        }
 
-    .search-bar button {
-        border-radius: 25px;
-        background-color: #ff8c00;
-        color: white;
-        padding: 8px 20px;
-        border: none;
-        transition: background-color 0.3s;
-    }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
 
-    .search-bar button:hover {
-        background-color: #e67e00; /* Darker orange on hover */
-    }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .navbar {
-        background-color: #343a40;
-        margin-top: 20px; /* Small space between search bar and navbar */
-    }
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+        }
 
-    .navbar-nav {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-    }
+        .search-bar button {
+            border-radius: 25px;
+            background-color: #ff8c00;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            transition: background-color 0.3s;
+        }
 
-    .nav-link {
-        color: white !important;
-        font-size: 1.1rem;
-    }
+        .search-bar button:hover {
+            background-color: #e67e00;
+        }
 
-    .nav-link:hover {
-        color: #ff8c00 !important;
-    }
-</style>
+        .navbar {
+            background-color: #343a40;
+            margin-top: 20px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 1.1rem;
+        }
+
+        .nav-link:hover {
+            color: #ff8c00 !important;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .search-bar {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .search-bar input {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <!-- First Section (Top) - Logo and Search Bar -->
 <div class="container-fluid top-section">
     <div class="row align-items-center">
-        <!-- Image Logo (Trendify) -->
-        <div class="col-md-3 col-12 text-center text-md-start">
-            <h1>Trendify</h1>
+        <!-- Logo -->
+        <div id="logo" class="col-md-3 col-12 text-center text-md-start">
+            <h1><span>T</span>rendify</h1>
         </div>
         <!-- Search Bar -->
         <div class="col-md-9 col-12 text-center text-md-start">
@@ -118,21 +150,22 @@
                         <i class="fas fa-envelope"></i> Contact Us
                     </a>
                 </li>
+
+
+                <!-- Conditional Rendering -->
+                <% if (user != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="rejister.jsp">
+                    <a class="nav-link active" href="rejister.jsp">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>
-
-                <!-- Visible to Logged-In Users -->
-                <% if (user != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../webapp/cart.jsp">
+                    <a class="nav-link active" href="cart.jsp">
                         <i class="fas fa-shopping-cart"></i> Cart
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../webapp/orders.jsp">
+                    <a class="nav-link active" href="orders.jsp">
                         <i class="fas fa-box"></i> Orders
                     </a>
                 </li>
@@ -142,7 +175,6 @@
                     </a>
                 </li>
                 <% } else { %>
-                <!-- Visible to Guests -->
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp">
                         <i class="fas fa-sign-in-alt"></i> Login
@@ -153,4 +185,5 @@
         </div>
     </div>
 </nav>
+
 

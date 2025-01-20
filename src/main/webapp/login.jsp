@@ -26,28 +26,26 @@
         }
 
         .container {
-            max-width: 400px;
-            margin-top: 100px;
-            padding: 30px;
+            max-width: 500px;
+            margin-top: 80px;
+            padding: 20px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
 
         h2 {
+            text-decoration: underline;
             text-align: center;
-            color: #007bff; /* Primary theme color */
+            color: dimgrey; /* Primary theme color */
             margin-bottom: 20px;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: darkslategrey;
             border: none;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
 
         .form-text {
             font-size: 0.85rem;
@@ -55,7 +53,7 @@
         }
 
         .text-center a {
-            color: #007bff;
+            color: dimgray;
             text-decoration: none;
         }
 

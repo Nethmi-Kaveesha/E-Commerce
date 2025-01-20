@@ -24,7 +24,7 @@ public class ProductDao {
         List<Product> products = new ArrayList<Product>();
 
         try {
-            query = "select * from product";
+            query = "select * from products";
             pst = this.con.prepareStatement(query);
             rs = pst.executeQuery();
             while (rs.next()) {

@@ -1,23 +1,40 @@
 package lk.ijse.ecommerceapp.model;
 
+import java.math.BigDecimal;
+
 public class Product {
     private int id;
     private String name;
-    private String category;
-    private String price;
+    private int categoryId; // Stores the foreign key reference to the category
+    private BigDecimal price; // Use BigDecimal for price to avoid precision issues
     private String image;
+
+    // Optional: Category name for display purposes, not stored in DB
+    private String categoryName;
 
     public Product() {
     }
 
-    public Product(int id, String name, String category, String price, String image) {
+    // Constructor for creating a product without category name
+    public Product(int id, String name, int categoryId, BigDecimal price, String image) {
         this.id = id;
         this.name = name;
-        this.category = category;
+        this.categoryId = categoryId;
         this.price = price;
         this.image = image;
     }
 
+    // Constructor for creating a product with category name (useful for display)
+    public Product(int id, String name, int categoryId, String categoryName, BigDecimal price, String image) {
+        this.id = id;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.price = price;
+        this.image = image;
+    }
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -34,19 +51,19 @@ public class Product {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -58,14 +75,36 @@ public class Product {
         this.image = image;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", price='" + price + '\'' +
+                ", categoryId=" + categoryId +
+                ", price=" + price +
                 ", image='" + image + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
     }
 }

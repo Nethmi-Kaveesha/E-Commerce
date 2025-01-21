@@ -131,8 +131,13 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Always Visible -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active" aria-current="page" href="index.jsp">
                         <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.jsp">
+                        <i class="fas fa-store"></i> Admin Dashboard
                     </a>
                 </li>
                 <li class="nav-item">

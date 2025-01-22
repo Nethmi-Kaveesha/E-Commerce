@@ -44,7 +44,8 @@
 <body>
 <%@include file="includes/navbar.jsp"%>
 <div class="container">
-    <div class="d-flex py-3"><h3>Total Price: $  ${(total>0)?dcf.format(total):0}</h3><a class="mx-3 btn btn-primary" href="#">Check OutS</a></div>
+    <div class="d-flex py-3"><h3>Total Price: $  ${(total>0)?dcf.format(total):0}</h3>
+        <a class="mx-3 btn btn-primary" href="cart-check-out">Check OutS</a></div>
     <table class="table table-loght">
         <thead>
         <tr>
@@ -64,14 +65,14 @@
             <td><%= c.getCategoryId()%></td>
             <td><%= dcf.format(c.getPrice())%></td>
             <td>
-                <form action="" method="post" class="form-inline">
+                <form action="order-now" method="post" class="form-inline">
                     <input type="hidden" name="id" value="<%=c.getId()%>" class="form-input">
-                    <div class="form-group d-flex justify-content-between">
+                    <div class="form-group d-flex justify-content-between w-50">
                         <a class="btn btn-sm btn-decre" href="quantity-inc-dec?action=dec&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
-                        <input type="text" name="quantity" class="form-control" value="<%=c.getQuantity()%>" readonly>
+                        <input type="text" name="quantity" class="form-control w-30" value="<%=c.getQuantity()%>" readonly>
                         <a class="btn btn-sm btn-incre" href="quantity-inc-dec?action=inc&id=<%=c.getId()%>"><i class="fas fa-plus-square"></i></a>
-
                     </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Buy</button>
                 </form>
             </td>
             <td><a class="btn btn-sm btn-danger" href="remove-from-cart?id=<%=c.getId()%>">Remove</a></td>

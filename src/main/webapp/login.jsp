@@ -2,17 +2,20 @@
 <%@ page import="lk.ijse.ecommerceapp.model.Cart" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%
-    User user = (User) request.getSession().getAttribute("user");
+    User user = (User) session.getAttribute("user");
     if (user != null) {
-       response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp");
+        return; // Prevent further execution
     }
 
-    ArrayList<Cart> cartArrayList = (ArrayList<Cart>)session.getAttribute("cart-list");
+    ArrayList<Cart> cartArrayList = (ArrayList<Cart>) session.getAttribute("cart-list");
     if (cartArrayList != null) {
         request.setAttribute("cartList", cartArrayList);
     }
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-color: #f8f9fa; /* Light grey background */
+            background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
 
@@ -38,13 +41,13 @@
             padding: 20px;
             background: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             text-decoration: underline;
             text-align: center;
-            color: dimgrey; /* Primary theme color */
+            color: dimgrey;
             margin-bottom: 20px;
         }
 
@@ -53,10 +56,9 @@
             border: none;
         }
 
-
         .form-text {
             font-size: 0.85rem;
-            color: #6c757d; /* Muted text color */
+            color: #6c757d;
         }
 
         .text-center a {
@@ -92,7 +94,7 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
         </div>
 
-        <!-- Error Message (if any) -->
+        <!-- Error Message -->
         <c:if test="${not empty errorMessage}">
             <div class="alert alert-danger" role="alert">
                     ${errorMessage}
@@ -106,7 +108,7 @@
 
         <!-- Register Link -->
         <div class="text-center mt-3">
-            <a href="/rejister.jsp">Don't have an account? Register here</a>
+            <a href="register.jsp">Don't have an account? Register here</a>
         </div>
     </form>
 </div>

@@ -94,6 +94,28 @@ public class ProductDao {
         return products;
     }
 
+    public Product getSingleProduct(int id) {
+        Product row = null;
+
+        try {
+            query = "SELECT * FROM products WHERE id = ?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                row = new Product();
+                row.setId(rs.getInt("id"));
+                row.setName(rs.getString("name"));
+                row.setCategoryId(rs.getInt("category_id"));
+                row.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
+                row.setImage(rs.getString("image"));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return row;
+    }
+
     public double getTotalCartPrice(ArrayList<Cart> cartList) {
         double sum = 0;
 

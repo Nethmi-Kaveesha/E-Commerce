@@ -165,7 +165,7 @@
                 <!-- Conditional Rendering -->
                 <% if (user != null) { %>
                 <li class="nav-item">
-                    <a class="nav-link active" href="rejister.jsp">
+                    <a class="nav-link active" href="register.jsp">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </li>

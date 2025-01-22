@@ -57,8 +57,8 @@
                         <td><%= order.getName()%></td>
                         <td><%= order.getCategoryId()%></td>
                         <td><%= order.getQuantity()%></td>
-                        <td><%= order.getPrice()%></td>
-                    <td><a class="btn btn-sm btn-danger" href="cancel-order?id=><%= order.getOrderId() %>">Cancel</a> </td>
+                        <td><%= dcf.format(order.getPrice())%></td>
+                    <td><a class="btn btn-sm btn-danger" href="cancel-order?id=<%= order.getOrderId() %>">Cancel</a> </td>
            </tr>
                 <%}
                 }

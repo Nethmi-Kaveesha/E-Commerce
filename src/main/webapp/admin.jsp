@@ -108,7 +108,7 @@
             <div class="card-body">
                 <h5 class="card-title">Manage Products</h5>
                 <!-- View Details Button inside the Manage Products Card -->
-                <a href="view-user-details.jsp" class="btn view-details-button">
+                <a href="product.jsp" class="btn view-details-button">
                     <i class="fas fa-info-circle"></i> View Details
                 </a>
             </div>

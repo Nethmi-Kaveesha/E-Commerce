@@ -26,7 +26,7 @@
 <%@ include file="includes/navbar.jsp" %>
 
 <!-- Button to go back to Product Management, with Font Awesome icon -->
-<a href="product.jsp" class="btn btn-secondary position-absolute top-40  m-3" style="right: 110px;">
+<a href="product.jsp" class="btn btn-secondary position-absolute top-40 m-3" style="right: 110px;">
     <i class="fas fa-arrow-left"></i> Back to Product Management
 </a>
 
@@ -59,7 +59,18 @@
             <td><%= product.getId() %></td>
             <td><%= product.getName() %></td>
             <td><%= product.getPrice() %></td>
-            <td><%= product.getImage() != null ? product.getImage() : "No image available" %></td>
+            <td>
+                <%
+                    // Check if the product has an image
+                    String imagePath = product.getImage();
+                    if (imagePath == null || imagePath.isEmpty()) {
+                        imagePath = "product-image/1.jpg"; // Default image if no image is found
+                    } else {
+                        imagePath = "product-image/" + imagePath; // Product-specific image path
+                    }
+                %>
+                <img src="<%= imagePath %>" alt="Product Image" width="100" height="100">
+            </td>
             <td><%= product.getCategoryId() %></td>
         </tr>
         <%

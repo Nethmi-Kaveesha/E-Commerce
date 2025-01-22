@@ -81,4 +81,15 @@ public class OrderDao {
         }
         return list;
     }
+
+    public void cancelOrder(int id) {
+        try {
+            query = "delete from orders where o_id=?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

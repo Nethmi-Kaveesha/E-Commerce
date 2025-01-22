@@ -4,8 +4,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="lk.ijse.ecommerceapp.dao.ProductDao" %>
 <%@ page import="lk.ijse.ecommerceapp.db.DBConnectionUtil" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
+    DecimalFormat dcf = new DecimalFormat("#.##");
+    request.setAttribute("dcf",dcf);
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
          request.setAttribute("user", user);
@@ -41,7 +44,7 @@
 <body>
 <%@include file="includes/navbar.jsp"%>
 <div class="container">
-    <div class="d-flex py-3"><h3>Total Price: $  ${(total>0)?total:0}</h3><a class="mx-3 btn btn-primary" href="#">Check OutS</a></div>
+    <div class="d-flex py-3"><h3>Total Price: $  ${(total>0)?dcf.format(total):0}</h3><a class="mx-3 btn btn-primary" href="#">Check OutS</a></div>
     <table class="table table-loght">
         <thead>
         <tr>
@@ -59,7 +62,7 @@
                  <tr>
             <td><%= c.getName()%></td>
             <td><%= c.getCategoryId()%></td>
-            <td><%= c.getPrice()%></td>
+            <td><%= dcf.format(c.getPrice())%></td>
             <td>
                 <form action="" method="post" class="form-inline">
                     <input type="hidden" name="id" value="<%=c.getId()%>" class="form-input">

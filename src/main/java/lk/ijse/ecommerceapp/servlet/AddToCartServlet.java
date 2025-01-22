@@ -79,7 +79,7 @@ public class AddToCartServlet extends HttpServlet {
                 session.setAttribute("cart-list", cartList);
 
                 // Redirect to the cart page after adding the product
-                resp.sendRedirect("cart.jsp");
+                resp.sendRedirect("index.jsp");
             } else {
                 // Product not found, handle error gracefully
                 resp.sendRedirect("error.jsp?message=Product%20not%20found");

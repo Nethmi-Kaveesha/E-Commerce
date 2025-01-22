@@ -1,10 +1,16 @@
 <%@ page import="lk.ijse.ecommerceapp.model.User" %>
+<%@ page import="lk.ijse.ecommerceapp.model.Cart" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
-        // request.setAttribute("user", user);
-        response.sendRedirect("index.jsp");
+         request.setAttribute("user", user);
+    }
+
+    ArrayList<Cart> cartArrayList = (ArrayList<Cart>)session.getAttribute("cart-list");
+    if (cartArrayList != null) {
+        request.setAttribute("cartList", cartArrayList);
     }
 %><!DOCTYPE html>
 <html>

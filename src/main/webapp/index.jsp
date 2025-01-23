@@ -35,7 +35,9 @@
 </head>
 <body>
 <%@ include file="includes/navbar.jsp" %>
-
+<h2>Welcome, ${name}!</h2>
+<p>Your role is: ${role}</p>
+<a href="login.jsp">Logout</a>
 <div class="container">
     <div class="card-header my-3">All Products</div>
     <div class="row">

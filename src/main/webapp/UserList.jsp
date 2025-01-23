@@ -112,6 +112,20 @@
             width: 100%;
         }
     }
+
+     .custom-btn {
+         height: 50px; /* Adjust the height */
+         width: 150px; /* Adjust the width */
+         font-size: 18px; /* Optional: increase font size for better visibility */
+         display: flex;
+         align-items: center;
+         justify-content: center;
+     }
+
+    .custom-btn i {
+        margin-right: 8px; /* Adds space between the icon and the text */
+    }
+
 </style>
 </head>
 <body>
@@ -203,11 +217,18 @@
     </div>
 </nav>
 
-
+<a href="user.jsp" class="btn btn-secondary position-absolute top-40  m-3" style="right: 110px;">
+    <i class="fas fa-arrow-left"></i> Back to
+</a>
 
 <div class="container mt-5">
     <h2 class="text-center">User List</h2>
+    <a href="user-add.jsp" class="btn btn-success btn-sm custom-btn">
+        <i class="fas fa-user-plus"></i> Add User
+    </a>
 
+<br>
+    <br>
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -237,8 +258,9 @@
                        data-toggle="toggle" data-on="Active" data-off="Inactive" data-size="small">
             </td>
             <td>
-                <a href="edit-user.jsp?id=<%= user.getId() %>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="delete-user.jsp?id=<%= user.getId() %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+                <a href="user-edit.jsp?id=<%= user.getId() %>" class="btn btn-warning btn-sm">Edit</a>
+
+                <a href="user-delete.jsp?id=<%= user.getId() %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
             </td>
         </tr>
         <%

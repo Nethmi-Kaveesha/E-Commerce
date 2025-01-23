@@ -1,4 +1,5 @@
 <%@ page import="lk.ijse.ecommerceapp.model.User" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     User user = (User) request.getSession().getAttribute("user");
@@ -96,7 +97,7 @@
             <div class="card-body">
                 <h5 class="card-title">Manage Users</h5>
                 <!-- View Details Button inside the Manage Users Card -->
-                <a href="view-user-details.jsp" class="btn view-details-button">
+                <a href="user.jsp" class="btn view-details-button">
                     <i class="fas fa-info-circle"></i> View Details
                 </a>
             </div>

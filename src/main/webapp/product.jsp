@@ -4,7 +4,7 @@
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
         response.sendRedirect("index.jsp");
-        return; // Ensure no further processing happens after the redirect
+        return;
     }
 %>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management System</title>
-    <%@ include file="includes/head.jsp" %> <!-- Include header from a separate file -->
+    <%@ include file="includes/head.jsp" %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <style>
@@ -80,10 +80,7 @@
     </style>
 </head>
 <body>
-<%@ include file="includes/navbar.jsp" %> <!-- Include navbar from a separate file -->
-
-
-<!-- Main Content Section -->
+<%@ include file="includes/navbar.jsp" %>
 <div class="container">
     <h1>Product Management System</h1>
 
@@ -95,7 +92,7 @@
     </div>
 </div>
 
-<%@ include file="includes/footer.jsp" %> <!-- Include footer from a separate file -->
+<%@ include file="includes/footer.jsp" %>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

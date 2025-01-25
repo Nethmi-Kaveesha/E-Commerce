@@ -6,19 +6,17 @@ public class UserDTO {
     private String email;
     private String role;
     private boolean isActive;
-    private String password;  // Added password field
+    private String password;
 
-    // Constructor
     public UserDTO(int id, String name, String email, String role, boolean isActive, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.role = role;
         this.isActive = isActive;
-        this.password = password;  // Set password
+        this.password = password;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

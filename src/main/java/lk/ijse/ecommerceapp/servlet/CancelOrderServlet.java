@@ -10,7 +10,6 @@ import lk.ijse.ecommerceapp.db.DBConnectionUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 @WebServlet("/cancel-order")
 public class CancelOrderServlet extends HttpServlet {

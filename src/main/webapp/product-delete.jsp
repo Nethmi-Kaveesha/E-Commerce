@@ -4,7 +4,7 @@
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
         response.sendRedirect("index.jsp");
-        return;  // Ensure no further processing happens after the redirect
+        return;
     }
 %>
 <!DOCTYPE html>
@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Product</title>
     <%@ include file="includes/head.jsp" %>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -25,8 +24,6 @@
 
 <div class="container my-5">
     <h1 class="text-center mb-4">Delete Product</h1>
-
-    <!-- Display Success Message -->
     <%
         String message = request.getParameter("message");
         if (message != null) {
@@ -38,7 +35,6 @@
         }
     %>
 
-    <!-- Display Error Message -->
     <%
         String error = request.getParameter("error");
         if (error != null) {
@@ -50,7 +46,6 @@
         }
     %>
 
-    <!-- Delete Product Form -->
     <form action="product-delete" method="post" class="border rounded p-4 shadow-sm">
         <div class="mb-3">
             <label for="product_id" class="form-label">Product ID:</label>
@@ -65,7 +60,6 @@
 
 <%@ include file="includes/footer.jsp" %>
 
-<!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

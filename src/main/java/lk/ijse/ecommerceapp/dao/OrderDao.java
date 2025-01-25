@@ -56,20 +56,17 @@ public class OrderDao {
                 ProductDao productDao = new ProductDao(this.con);
                 int pId = rs.getInt("p_id");
 
-                // Fetch the product details
                 Product product = productDao.getSingleProduct(pId);
 
-                // Set order details
                 order.setOrderId(rs.getInt("o_id"));
                 order.setId(pId);
                 order.setName(product.getName());
                 order.setCategoryId(product.getCategoryId());
 
-                // Handle BigDecimal price calculation
                 BigDecimal pricePerUnit = product.getPrice();
                 int quantity = rs.getInt("o_quantity");
                 BigDecimal totalPrice = pricePerUnit.multiply(BigDecimal.valueOf(quantity));
-                order.setPrice(totalPrice); // Assuming `setPrice` accepts BigDecimal
+                order.setPrice(totalPrice);
 
                 order.setQuantity(quantity);
                 order.setDate(rs.getString("o_date"));

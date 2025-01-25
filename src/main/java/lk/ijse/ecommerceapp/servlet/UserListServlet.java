@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.ecommerceapp.db.DataSourceFactory;
 import lk.ijse.ecommerceapp.dto.UserDTO;
-
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,27 +24,24 @@ public class UserListServlet extends HttpServlet {
         List<UserDTO> userList = new ArrayList<>();
 
         try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
-            String sql = "SELECT * FROM users"; // Adjusted query to select from 'users'
+            String sql = "SELECT * FROM users";
             try (PreparedStatement pst = connection.prepareStatement(sql);
                  ResultSet rst = pst.executeQuery()) {
                 while (rst.next()) {
-                    // Assuming UserDTO has fields like id, name, email, password, etc.
                     UserDTO userDTO = new UserDTO(
                             rst.getInt("id"),
                             rst.getString("name"),
                             rst.getString("email"),
                             rst.getString("role"),
                             rst.getBoolean("is_active"),
-                            rst.getString("password") // Set password
+                            rst.getString("password")
                     );
                     userList.add(userDTO);
                 }
             }
 
-            // Set the user list as a request attribute
             req.setAttribute("users", userList);
 
-            // Forward the request to user-list.jsp
             RequestDispatcher rd = req.getRequestDispatcher("UserList.jsp");
             rd.forward(req, resp);
 

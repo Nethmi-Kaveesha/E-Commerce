@@ -26,19 +26,16 @@ public class UserUpdateServlet extends HttpServlet {
         String isActive = req.getParameter("user_is_active");
         String password = req.getParameter("user_password");
 
-        // Debugging: log input parameters
         System.out.println("Received parameters: id=" + id + ", name=" + name + ", email=" + email + ", role=" + role);
 
         DataSource dataSource = DataSourceFactory.getDataSource();
 
         try (Connection connection = dataSource.getConnection()) {
-            // Check if user exists before updating
             String sqlCheck = "SELECT COUNT(*) FROM users WHERE id=?";
             try (PreparedStatement stmt = connection.prepareStatement(sqlCheck)) {
                 stmt.setInt(1, Integer.parseInt(id));
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next() && rs.getInt(1) > 0) {
-                    // User exists, proceed with the update
                     String sql = "UPDATE users SET name=?, email=?, role=?, is_active=?, password=? WHERE id=?";
                     try (PreparedStatement pstm = connection.prepareStatement(sql)) {
                         pstm.setString(1, name);

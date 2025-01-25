@@ -3,19 +3,17 @@ package lk.ijse.ecommerceapp.model;
 import java.sql.Timestamp;
 
 public class User {
-    private int id;                     // Primary Key
-    private String name;                // User's name
-    private String email;               // User's email (unique)
-    private String password;            // Hashed password
-    private String role;                // Role (admin or customer)
-    private boolean isActive;           // Account active status
-    private Timestamp createdAt;        // Account creation timestamp
-    private Timestamp updatedAt;        // Last update timestamp
+    private int id;
+    private String name;
+    private String email;
+    private String password;
+    private String role;
+    private boolean isActive;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
-    // Default Constructor
     public User() {}
 
-    // Parameterized Constructor
     public User(int id, String name, String email, String password, String role, boolean isActive, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.name = name;
@@ -27,7 +25,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

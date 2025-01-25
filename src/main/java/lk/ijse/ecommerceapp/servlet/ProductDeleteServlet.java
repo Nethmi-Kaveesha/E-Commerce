@@ -31,10 +31,8 @@ public class ProductDeleteServlet extends HttpServlet {
                 int effectedRowCount = pstm.executeUpdate();
 
                 if (effectedRowCount > 0) {
-                    // Success
                     resp.sendRedirect("product-delete.jsp?message=Product deleted successfully");
                 } else {
-                    // Fail - product not found
                     resp.sendRedirect("product-delete.jsp?error=Product not found");
                 }
             }

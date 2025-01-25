@@ -1,5 +1,4 @@
 <Context>
-    <!-- Tomcat JDBC Connection Pool Configuration -->
     <Resource name="jdbc/ecommerceDB"
               auth="Container"
               type="javax.sql.DataSource"

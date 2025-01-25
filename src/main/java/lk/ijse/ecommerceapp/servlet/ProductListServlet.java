@@ -8,9 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.ecommerceapp.db.DataSourceFactory;
 import lk.ijse.ecommerceapp.dto.ProductDTO;
-
-
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,10 +39,8 @@ public class ProductListServlet extends HttpServlet {
                 }
             }
 
-            // Set the product list as a request attribute
             req.setAttribute("products", productList);
 
-            // Forward the request to product-list.jsp
             RequestDispatcher rd = req.getRequestDispatcher("product-list.jsp");
             rd.forward(req, resp);
 

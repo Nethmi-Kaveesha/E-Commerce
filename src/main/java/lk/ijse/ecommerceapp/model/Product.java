@@ -5,17 +5,15 @@ import java.math.BigDecimal;
 public class Product {
     private int id;
     private String name;
-    private int categoryId; // Stores the foreign key reference to the category
-    private BigDecimal price; // Use BigDecimal for price to avoid precision issues
+    private int categoryId;
+    private BigDecimal price;
     private String image;
 
-    // Optional: Category name for display purposes, not stored in DB
     private String categoryName;
 
     public Product() {
     }
 
-    // Constructor for creating a product without category name
     public Product(int id, String name, int categoryId, BigDecimal price, String image) {
         this.id = id;
         this.name = name;
@@ -24,7 +22,6 @@ public class Product {
         this.image = image;
     }
 
-    // Constructor for creating a product with category name (useful for display)
     public Product(int id, String name, int categoryId, String categoryName, BigDecimal price, String image) {
         this.id = id;
         this.name = name;
@@ -34,7 +31,6 @@ public class Product {
         this.image = image;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }

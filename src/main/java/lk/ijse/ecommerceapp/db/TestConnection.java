@@ -1,7 +1,4 @@
-package lk.ijse.ecommerceapp.db; // Your package name
-
-
-
+package lk.ijse.ecommerceapp.db;
 import java.sql.Connection;
 import java.sql.SQLException;
 

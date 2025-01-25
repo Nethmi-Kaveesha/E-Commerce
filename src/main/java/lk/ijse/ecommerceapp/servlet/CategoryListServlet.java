@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.ecommerceapp.db.DataSourceFactory;
 import lk.ijse.ecommerceapp.dto.CategoryDTO;
-
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,10 +37,8 @@ public class CategoryListServlet extends HttpServlet {
                 }
             }
 
-            // Set the category list as a request attribute
             req.setAttribute("categories", categoryList);
 
-            // Forward the request to category-list.jsp
             RequestDispatcher rd = req.getRequestDispatcher("category-list.jsp");
             rd.forward(req, resp);
 

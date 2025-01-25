@@ -3,9 +3,7 @@ import lk.ijse.ecommerceapp.model.Cart;
 import lk.ijse.ecommerceapp.model.Product;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +30,8 @@ public class ProductDao {
                 Product row = new Product();
                 row.setId(rs.getInt("id"));
                 row.setName(rs.getString("name"));
-                row.setCategoryId(rs.getInt("category_id")); // Corrected field to category_id
-                row.setPrice(BigDecimal.valueOf(rs.getDouble("price"))); // Converting to BigDecimal
+                row.setCategoryId(rs.getInt("category_id"));
+                row.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
                 row.setImage(rs.getString("image"));
 
                 products.add(row);
@@ -44,7 +42,6 @@ public class ProductDao {
         return products;
     }
 
-    // Fetch product details by ID (useful for adding to the cart)
     public Product getProductById(int id) {
         Product product = null;
         try {
@@ -56,8 +53,8 @@ public class ProductDao {
                 product = new Product();
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
-                product.setCategoryId(rs.getInt("category_id")); // Corrected field to category_id
-                product.setPrice(BigDecimal.valueOf(rs.getDouble("price"))); // Converting to BigDecimal
+                product.setCategoryId(rs.getInt("category_id"));
+                product.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
                 product.setImage(rs.getString("image"));
             }
         } catch (Exception e) {
@@ -72,14 +69,13 @@ public class ProductDao {
         try {
             if (cartList.size() > 0) {
                 for (Cart item : cartList) {
-                    // Instead of querying the cart table, just fetch product details using the product ID
                     Product product = getProductById(item.getId());
                     if (product != null) {
                         Cart cartItem = new Cart();
                         cartItem.setId(product.getId());
                         cartItem.setName(product.getName());
-                        cartItem.setCategoryId(product.getCategoryId()); // Corrected field to category_id
-                        cartItem.setPrice(product.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()))); // Multiply price by quantity
+                        cartItem.setCategoryId(product.getCategoryId());
+                        cartItem.setPrice(product.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
                         cartItem.setQuantity(item.getQuantity());
 
                         products.add(cartItem);
@@ -139,5 +135,25 @@ public class ProductDao {
 
         return sum;
     }
+
+    public List<Product> getProductsSortedByPrice(String sortOrder) throws SQLException {
+        String query = "SELECT * FROM products ORDER BY price " + sortOrder;
+        PreparedStatement ps = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        List<Product> productList = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setId(rs.getInt("id"));
+            product.setName(rs.getString("name"));
+            product.setPrice(rs.getBigDecimal("price"));
+            product.setCategoryId(rs.getInt("category_id"));
+            product.setImage(rs.getString("image"));
+            productList.add(product);
+        }
+        return productList;
+    }
+
+
 
 }

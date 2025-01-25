@@ -31,10 +31,8 @@ public class CategoryDeleteServlet extends HttpServlet {
                 int effectedRowCount = pstm.executeUpdate();
 
                 if (effectedRowCount > 0) {
-                    // Success
                     resp.sendRedirect("category-delete.jsp?message=Category deleted successfully");
                 } else {
-                    // Fail - category not found
                     resp.sendRedirect("category-delete.jsp?error=Category not found");
                 }
             }

@@ -1,128 +1,80 @@
+<%@ page import="lk.ijse.ecommerceapp.model.User" %><%--
+  Created by IntelliJ IDEA.
+  User: kavee
+  Date: 1/11/2025
+  Time: 2:06 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  User user = (User) request.getSession().getAttribute("user");
+  if (user != null) {
+    response.sendRedirect("index.jsp");
+    return;
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Registration</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .register-container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    .register-container h1 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    .form-group input:focus {
-      border-color: #007bff;
-      outline: none;
-    }
-    .form-error {
-      color: red;
-      font-size: 0.9rem;
-    }
-    .btn {
-      display: inline-block;
-      background-color: #007bff;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      text-align: center;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 1rem;
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-    .login-link {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .login-link a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-    .alert {
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 5px;
-      background-color: #28a745;
-      color: white;
-      text-align: center;
-      font-size: 1rem;
-    }
-  </style>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="register-container">
-  <h1>Register</h1>
+<%@ include file="includes/navbar.jsp" %>
 
-  <!-- Success message display logic -->
-  <% if (request.getAttribute("registrationSuccess") != null) { %>
-  <div class="alert">
-    User registered successfully!
-  </div>
-  <% } %>
+<div class="container my-5">
+  <h2 class="text-center mb-4">User Registration</h2>
 
-  <form action="user-register" method="POST">
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+  <c:if test="${not empty message}">
+    <div class="alert alert-success text-center">${message}</div>
+  </c:if>
+  <c:if test="${not empty error}">
+    <div class="alert alert-danger text-center">${error}</div>
+  </c:if>
+
+  <form action="user-register-action" method="POST" class="border rounded p-4 shadow-sm">
+    <div class="mb-3">
+      <label for="user_name" class="form-label">Full Name:</label>
+      <input type="text" id="user_name" name="user_name" class="form-control" placeholder="Enter your full name" required>
     </div>
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <div class="mb-3">
+      <label for="user_email" class="form-label">Email Address:</label>
+      <input type="email" id="user_email" name="user_email" class="form-control" placeholder="Enter your email" required>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+    <div class="mb-3">
+      <label for="user_password" class="form-label">Password:</label>
+      <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Enter your password" required>
     </div>
-    <div class="form-group">
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+
+    <div class="mb-3">
+      <label for="user_role" class="form-label">Role:</label>
+      <select id="user_role" name="user_role" class="form-select" required>
+        <option value="admin">Admin</option>
+        <option value="customer">Customer</option>
+      </select>
     </div>
-    <button type="submit" class="btn">Register</button>
+
+    <div class="mb-3">
+      <label for="user_is_active" class="form-label">Account Active:</label>
+      <input type="checkbox" id="user_is_active" name="user_is_active">
+    </div>
+
+    <div class="mb-3 text-center">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
   </form>
-  <div class="login-link">
-    <p>Already have an account? <a href="login.jsp">Login here</a>.</p>
-  </div>
+
+  <p class="text-center">Already have an account? <a href="login.jsp">Login here</a></p>
 </div>
 
+<%@ include file="includes/footer.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

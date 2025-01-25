@@ -21,7 +21,6 @@ public class CategoryUpdateServlet extends HttpServlet {
         String name = req.getParameter("category_name");
         String description = req.getParameter("category_description");
 
-        // Get DataSource from DataSourceFactory
         DataSource dataSource = DataSourceFactory.getDataSource();
 
         try (Connection connection = dataSource.getConnection()) {
@@ -29,22 +28,19 @@ public class CategoryUpdateServlet extends HttpServlet {
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setString(1, name);
             pstm.setString(2, description);
+
             pstm.setInt(3, Integer.parseInt(id));
 
             int effectedRowCount = pstm.executeUpdate();
 
             if (effectedRowCount > 0) {
-                // success
-                resp.sendRedirect(
-                        "category-update.jsp?message=Category updated successfully");
+                resp.sendRedirect("category-update.jsp?message=Category updated successfully");
             } else {
-                // fail
-                resp.sendRedirect(
-                        "category-update.jsp?error=Failed to update category");
+                resp.sendRedirect("category-update.jsp?error=Failed to update category");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect("category-update.jsp?error=Failed to update category");
+            resp.sendRedirect("category-update.jsp?error=An error occurred while updating category");
         }
     }
 }

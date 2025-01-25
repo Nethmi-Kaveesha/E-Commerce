@@ -20,7 +20,6 @@ public class CategorySaveServlet extends HttpServlet {
         String categoryName = req.getParameter("category_name");
         String categoryDescription = req.getParameter("category_description");
 
-        // Get DataSource from the DataSourceFactory
         DataSource dataSource = DataSourceFactory.getDataSource();
 
         try (Connection connection = dataSource.getConnection()) {
@@ -29,18 +28,14 @@ public class CategorySaveServlet extends HttpServlet {
             pstm.setString(1, categoryName);
             pstm.setString(2, categoryDescription);
 
-            // Execute the query and get the affected row count
             int effectedRowCount = pstm.executeUpdate();
 
             if (effectedRowCount > 0) {
-                // Redirect with success message
                 resp.sendRedirect("category-add.jsp?message=Category saved successfully");
             } else {
-                // Redirect with error message
                 resp.sendRedirect("category-add.jsp?error=Failed to save category");
             }
         } catch (Exception e) {
-            // Handle exceptions and redirect with an error message
             e.printStackTrace();
             resp.sendRedirect("category-add.jsp?error=Failed to save category");
         }

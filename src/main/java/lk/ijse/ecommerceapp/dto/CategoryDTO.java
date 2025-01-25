@@ -6,18 +6,15 @@ public class CategoryDTO {
     private String name;
     private String description;
 
-    // Default Constructor
     public CategoryDTO() {
     }
 
-    // Parameterized Constructor
     public CategoryDTO(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

@@ -14,24 +14,20 @@ public class DataSourceFactory {
 
     static {
         try {
-            // Configure HikariCP
             HikariConfig config = new HikariConfig();
-            config.setJdbcUrl("jdbc:mysql://localhost:3306/ecommerce"); // Update with your database name
-            config.setUsername("root"); // Update with your MySQL username
-            config.setPassword("pass123"); // Update with your MySQL password
+            config.setJdbcUrl("jdbc:mysql://localhost:3306/ecommerce");
+            config.setUsername("root");
+            config.setPassword("pass123");
             config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-            // Connection pool settings
-            config.setMaximumPoolSize(20); // Increase max pool size to 20
-            config.setMinimumIdle(5); // Minimum idle connections in the pool
-            config.setIdleTimeout(30000); // Maximum idle time for connections in milliseconds
-            config.setConnectionTimeout(30000); // Maximum wait time for a connection in milliseconds
-            config.setMaxLifetime(1800000); // Maximum lifetime of a connection in milliseconds
+            config.setMaximumPoolSize(20);
+            config.setMinimumIdle(5);
+            config.setIdleTimeout(30000);
+            config.setConnectionTimeout(30000);
+            config.setMaxLifetime(1800000);
 
-            // Optional: Test query to validate connections
             config.setConnectionTestQuery("SELECT 1");
 
-            // Initialize the HikariDataSource
             dataSource = new HikariDataSource(config);
 
             logger.info("DataSource initialized successfully.");
@@ -42,14 +38,12 @@ public class DataSourceFactory {
     }
 
     private DataSourceFactory() {
-        // Prevent instantiation
     }
 
     public static DataSource getDataSource() {
         return dataSource;
     }
 
-    // Optional: Method to close the data source when the application shuts down
     public static void closeDataSource() {
         if (dataSource != null && !dataSource.isClosed()) {
             try {

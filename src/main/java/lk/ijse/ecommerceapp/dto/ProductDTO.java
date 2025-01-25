@@ -7,7 +7,6 @@ public class ProductDTO {
     private String image;
     private int categoryId;
 
-    // Constructor
     public ProductDTO(int id, String name, double price, String image, int categoryId) {
         this.id = id;
         this.name = name;
@@ -16,7 +15,6 @@ public class ProductDTO {
         this.categoryId = categoryId;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

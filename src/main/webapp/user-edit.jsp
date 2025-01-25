@@ -4,7 +4,7 @@
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
         response.sendRedirect("index.jsp");
-        return; // Ensure no further processing happens after the redirect
+        return;
     }
 %>
 <!DOCTYPE html>
@@ -54,8 +54,6 @@
 <br>
 <br>
 <h2>Edit User</h2>
-
-<!-- Success Message -->
 <%
     String message = request.getParameter("message");
     if (message != null) {

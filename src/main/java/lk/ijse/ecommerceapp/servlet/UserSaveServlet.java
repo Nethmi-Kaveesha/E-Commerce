@@ -23,7 +23,6 @@ public class UserSaveServlet extends HttpServlet {
         String userPassword = req.getParameter("user_password");
         boolean userIsActive = req.getParameter("user_is_active") != null;
 
-        // Get DataSource from the DataSourceFactory
         DataSource dataSource = DataSourceFactory.getDataSource();
 
         try (Connection connection = dataSource.getConnection()) {
@@ -32,21 +31,17 @@ public class UserSaveServlet extends HttpServlet {
             pstm.setString(1, userName);
             pstm.setString(2, userEmail);
             pstm.setString(3, userRole);
-            pstm.setString(4, userPassword);  // You may want to hash this password before saving
+            pstm.setString(4, userPassword);
             pstm.setBoolean(5, userIsActive);
 
-            // Execute the query and get the affected row count
             int effectedRowCount = pstm.executeUpdate();
 
             if (effectedRowCount > 0) {
-                // Redirect with success message
                 resp.sendRedirect("user-add.jsp?message=User saved successfully");
             } else {
-                // Redirect with error message
                 resp.sendRedirect("user-add.jsp?error=Failed to save user");
             }
         } catch (Exception e) {
-            // Handle exceptions and redirect with an error message
             e.printStackTrace();
             resp.sendRedirect("user-add.jsp?error=Failed to save user");
         }

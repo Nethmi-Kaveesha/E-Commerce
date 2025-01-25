@@ -31,10 +31,8 @@ public class UserDeleteServlet extends HttpServlet {
                 int effectedRowCount = pstm.executeUpdate();
 
                 if (effectedRowCount > 0) {
-                    // Success - user deleted
                     resp.sendRedirect("user-delete.jsp?message=User deleted successfully");
                 } else {
-                    // Fail - user not found
                     resp.sendRedirect("user-delete.jsp?error=User not found");
                 }
             }

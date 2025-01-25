@@ -7,15 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Toggle (For Toggle Button) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-    /* Custom styles */
     body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -33,12 +30,12 @@
         color: white;
         margin: 0;
         position: relative;
-        right: -20px; /* Move text 20px to the right */
+        right: -20px;
         text-transform: capitalize;
     }
 
     #logo h1 span:first-child {
-        color: #ff8c00; /* Orange color for 'T' */
+        color: #ff8c00;
     }
 
     .navbar-brand img {
@@ -114,30 +111,26 @@
     }
 
      .custom-btn {
-         height: 50px; /* Adjust the height */
-         width: 150px; /* Adjust the width */
-         font-size: 18px; /* Optional: increase font size for better visibility */
+         height: 50px;
+         width: 150px;
+         font-size: 18px;
          display: flex;
          align-items: center;
          justify-content: center;
      }
 
     .custom-btn i {
-        margin-right: 8px; /* Adds space between the icon and the text */
+        margin-right: 8px;
     }
 
 </style>
 </head>
 <body>
-
-<!-- First Section (Top) - Logo and Search Bar -->
 <div class="container-fluid top-section">
     <div class="row align-items-center">
-        <!-- Logo -->
         <div id="logo" class="col-md-3 col-12 text-center text-md-start">
             <h1><span>T</span>rendify</h1>
         </div>
-        <!-- Search Bar -->
         <div class="col-md-9 col-12 text-center text-md-start">
             <form class="d-flex justify-content-center justify-content-md-start search-bar" role="search">
                 <input class="form-control" type="search" placeholder="Search products" aria-label="Search">
@@ -148,8 +141,6 @@
         </div>
     </div>
 </div>
-
-<!-- Navbar with Links -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,7 +148,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Always Visible -->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.jsp">
                         <i class="fas fa-home"></i> Home
@@ -252,7 +242,6 @@
             <td><%= user.getEmail() %></td>
             <td><%= user.getRole() %></td>
             <td>
-                <!-- Toggle Button for Active/Inactive Status -->
                 <input type="checkbox" class="status-toggle" data-id="<%= user.getId() %>"
                     <%= user.isActive() ? "checked" : "" %>
                        data-toggle="toggle" data-on="Active" data-off="Inactive" data-size="small">
@@ -274,23 +263,19 @@
         </tbody>
     </table>
 </div>
-
-<!-- Bootstrap JS (optional, for better interactivity) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.5/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap Toggle JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
-    // Handle Toggle Change Event
+
     $(document).ready(function() {
         $('.status-toggle').change(function() {
             var userId = $(this).data('id');
             var isActive = $(this).prop('checked');
 
-            // Send AJAX request to update the user status
             $.ajax({
                 url: 'update-status',
                 method: 'POST',
@@ -303,7 +288,6 @@
                 },
                 error: function() {
                     alert('Error updating status');
-                    // Reset the toggle to the previous state
                     $(this).prop('checked', !isActive);
                 }
             });

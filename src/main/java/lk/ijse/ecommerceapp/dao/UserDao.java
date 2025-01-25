@@ -1,41 +1,29 @@
 package lk.ijse.ecommerceapp.dao;
 
 import lk.ijse.ecommerceapp.model.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDao {
     private final Connection con;
 
-    // Constructor to initialize the connection
     public UserDao(Connection con) {
         this.con = con;
     }
 
-    /**
-     * Method to authenticate user login.
-     *
-     * @param email    User's email
-     * @param password User's password (already hashed if using hashing)
-     * @return User object if authentication is successful, null otherwise
-     */
     public User userLogin(String email, String password) {
         User user = null;
 
-        // SQL query to authenticate user
         String query = "SELECT id, name, email, role, is_active FROM users WHERE email = ? AND password = ?";
 
         try (PreparedStatement pst = con.prepareStatement(query)) {
-            // Set query parameters
             pst.setString(1, email);
-            pst.setString(2, password); // Ensure password is hashed if stored as hashed
+            pst.setString(2, password);
 
-            // Execute query
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    // Populate user object if authentication is successful
                     user = new User();
                     user.setId(rs.getInt("id"));
                     user.setName(rs.getString("name"));
@@ -51,4 +39,26 @@ public class UserDao {
 
         return user;
     }
+
+    public boolean saveUser(User user) {
+        String query = "INSERT INTO users (name, email, password, role, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setString(1, user.getName());
+            pst.setString(2, user.getEmail());
+            pst.setString(3, user.getPassword());
+            pst.setString(4, user.getRole());
+            pst.setBoolean(5, user.isActive());
+            pst.setTimestamp(6, user.getCreatedAt());
+            pst.setTimestamp(7, user.getUpdatedAt());
+
+            int rowsInserted = pst.executeUpdate();
+            return rowsInserted > 0;
+        } catch (Exception e) {
+            System.err.println("Error during saving user: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

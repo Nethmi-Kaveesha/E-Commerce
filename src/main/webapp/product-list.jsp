@@ -4,11 +4,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    // Check if the user is logged in, if so, redirect them
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
         response.sendRedirect("index.jsp");
-        return; // Ensure no further processing happens after the redirect
+        return;
     }
 %>
 
@@ -25,7 +24,6 @@
 <body>
 <%@ include file="includes/navbar.jsp" %>
 
-<!-- Button to go back to Product Management, with Font Awesome icon -->
 <a href="product.jsp" class="btn btn-secondary position-absolute top-40 m-3" style="right: 110px;">
     <i class="fas fa-arrow-left"></i> Back to Product Management
 </a>
@@ -34,10 +32,9 @@
     <h1 class="text-center mb-4">Product List</h1>
 
     <%
-        // Retrieve the product list from the request attribute
+
         List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("products");
 
-        // Check if the list is empty or null
         if (productList != null && !productList.isEmpty()) {
     %>
     <table class="table table-bordered table-striped">
@@ -52,7 +49,6 @@
         </thead>
         <tbody>
         <%
-            // Iterate through the list of products and display them
             for (ProductDTO product : productList) {
         %>
         <tr>
@@ -61,12 +57,11 @@
             <td><%= product.getPrice() %></td>
             <td>
                 <%
-                    // Check if the product has an image
                     String imagePath = product.getImage();
                     if (imagePath == null || imagePath.isEmpty()) {
-                        imagePath = "product-image/1.jpg"; // Default image if no image is found
+                        imagePath = "product-image/1.jpg";
                     } else {
-                        imagePath = "product-image/" + imagePath; // Product-specific image path
+                        imagePath = "product-image/" + imagePath;
                     }
                 %>
                 <img src="<%= imagePath %>" alt="Product Image" width="100" height="100">
@@ -89,7 +84,6 @@
 
 <%@ include file="includes/footer.jsp" %>
 
-<!-- Bootstrap JS and Popper.js (Optional) -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>

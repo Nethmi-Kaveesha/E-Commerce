@@ -4,14 +4,13 @@
     User user = (User) request.getSession().getAttribute("user");
     if (user != null) {
         response.sendRedirect("index.jsp");
-        return; // Ensure no further processing happens after the redirect
+        return;
     }
 %>
 <html>
 <head>
     <title>Save Category</title>
     <%@ include file="includes/head.jsp" %>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
@@ -22,8 +21,6 @@
 </a>
 <div class="container my-5">
     <h1 class="text-center mb-4">Save Category</h1>
-
-    <!-- Success Message -->
     <%
         String message = request.getParameter("message");
         if (message != null) {
@@ -35,8 +32,6 @@
     <%
         }
     %>
-
-    <!-- Error Message -->
     <%
         String error = request.getParameter("error");
         if (error != null) {
@@ -49,7 +44,6 @@
         }
     %>
 
-    <!-- Category Form -->
     <form action="category-save" method="post" class="p-4 border rounded shadow-sm">
         <div class="mb-3">
             <label for="category_name" class="form-label">Category Name</label>

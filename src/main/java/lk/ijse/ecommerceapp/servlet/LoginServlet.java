@@ -37,13 +37,26 @@ public class LoginServlet extends HttpServlet {
 
         try (Connection con = DataSourceFactory.getDataSource().getConnection()) {
             UserDao userDao = new UserDao(con);
-
             User user = userDao.userLogin(email, password);
 
             if (user != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("user", user);
-                resp.sendRedirect("index.jsp");
+                // Get the current session, or create a new session if it doesn't exist
+                HttpSession session = req.getSession(false); // Use false to prevent creating a new session if it doesn't exist
+                if (session == null) {
+                    session = req.getSession(); // Create a new session
+                }
+
+                // Check if the session already has the user attribute
+                if (session.getAttribute("user") == null) {
+                    session.setAttribute("user", user); // Set the user session variable
+                }
+
+                // Redirect based on user role
+                if ("admin".equals(user.getRole())) {
+                    resp.sendRedirect("admindash.jsp");  // Admin Dashboard
+                } else {
+                    resp.sendRedirect("customer.jsp");  // Customer Dashboard
+                }
             } else {
                 req.setAttribute("errorMessage", "Invalid email or password! Please try again.");
                 req.getRequestDispatcher("login.jsp").forward(req, resp);

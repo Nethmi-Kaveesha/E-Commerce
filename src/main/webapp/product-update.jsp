@@ -24,7 +24,7 @@
 </head>
 <body>
 <%@ include file="includes/navbar.jsp" %>
-<a href="products.jsp" class="btn btn-secondary position-absolute top-40 m-3" style="right: 110px;">
+<a href="product.jsp" class="btn btn-secondary position-absolute top-40 m-3" style="right: 110px;">
     <i class="fas fa-arrow-left"></i> Back to
 </a>
 

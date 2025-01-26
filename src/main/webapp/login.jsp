@@ -6,7 +6,7 @@
 <%
     User user = (User) session.getAttribute("user");
     if (user != null) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("admindash.jsp");
         return;
     }
 

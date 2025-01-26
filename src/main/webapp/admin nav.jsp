@@ -266,14 +266,16 @@
                     </a>
                 </li>
 
-
-
+                <li class="nav-item">
+                    <a class="nav-link active" href="admin.jsp">
+                        <i class="fas fa-store"></i> Admin Dashboard
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="login.jsp">
                         <i class="fas fa-user"></i> Login
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>

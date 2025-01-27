@@ -15,17 +15,14 @@
         }
 
         .contact-form-container {
-            background: linear-gradient(45deg, #ff6f61, #ff9e2c);
-            color: white;
             display: flex;
             justify-content: center;
-            align-items: center;
+            margin-top: 40px;
             min-height: 100vh;
         }
 
         .contact-form {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
+            padding: 10px;
             border-radius: 10px;
             width: 100%;
             max-width: 600px;
@@ -92,7 +89,7 @@
     </style>
 </head>
 <body>
-
+<%@ include file="includes/navbar.jsp" %>
 <div class="contact-form-container">
     <div class="contact-form">
         <h2>Contact Us</h2>
